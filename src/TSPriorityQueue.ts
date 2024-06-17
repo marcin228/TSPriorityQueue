@@ -3,16 +3,23 @@ type HeapItem<T> = {
     value:T
 }
 
+type TSPriorityQueueVariance = 'min' | 'max';
+
 class TSPriorityQueue<T>{
 
+    private type:TSPriorityQueueVariance;
     private heap:Array<HeapItem<T>>;
 
     constructor(){
 
+        this.type = 'min';
         this.heap = [];
     }
 
     public add(item:HeapItem<T>):void{
+
+        if(this.type == 'max')
+            item.priority = -item.priority;
 
         this.heap.push(item);
         this.heapifyUp();
