@@ -21,7 +21,7 @@ class TSPriorityQueue<T>{
         if(this.type == 'max')
             item.priority = -item.priority;
 
-        this.heap.push(item);
+        this.heap[this.heap.length] = item;
         this.heapifyUp();
     }
 
@@ -64,12 +64,12 @@ class TSPriorityQueue<T>{
 
     private getLeftChildIndex(parentIndex:number):number{
     
-        return 2 * (parentIndex + 1);
+        return (parentIndex << 1) + 1);
     }
  
     private getRightChildIndex(parentIndex:number):number{
 
-        return 2 * (parentIndex + 2);
+        return (parentIndex << 1) + 2);
     }
  
     private getParentIndex(childIndex:number):number{
@@ -114,7 +114,8 @@ class TSPriorityQueue<T>{
  
     private heapifyUp():void{
 
-        let index = this.heap.length - 1;
+        let index:number = this.heap.length - 1;
+
         while(this.hasParent(index) && (this.parent(index).priority > this.heap[index].priority)){
             
             this.swap(this.getParentIndex(index), index);
@@ -124,7 +125,8 @@ class TSPriorityQueue<T>{
  
     private heapifyDown():void{
 
-        let index = 0;
+        let index:number = 0;
+
         while(this.hasLeftChild(index)){
 
             let smallerChildIndex = this.getLeftChildIndex(index);
