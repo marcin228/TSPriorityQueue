@@ -64,12 +64,12 @@ class TSPriorityQueue<T>{
 
     private getLeftChildIndex(parentIndex:number):number{
     
-        return (parentIndex << 1) + 1);
+        return (parentIndex << 1) + 1;
     }
  
     private getRightChildIndex(parentIndex:number):number{
 
-        return (parentIndex << 1) + 2);
+        return (parentIndex << 1) + 2;
     }
  
     private getParentIndex(childIndex:number):number{
