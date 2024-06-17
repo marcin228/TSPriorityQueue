@@ -18,7 +18,7 @@ class TSPriorityQueue<T>{
         this.heapifyUp();
     }
 
-    public peek():HeapItem<T> | null {
+    public peek():HeapItem<T>|null{
         
         if(this.heap.length == 0)
             return null;
@@ -26,11 +26,10 @@ class TSPriorityQueue<T>{
         return this.heap[0]!;
     }
  
-    public remove():HeapItem<T> | null {
+    public remove():HeapItem<T>|null{
         
-        if(this.heap.length == 0) {
+        if(this.heap.length == 0)
             return null;
-        }
 
         const item = this.heap[0];
         this.heap[0] = this.heap[this.heap.length - 1];
