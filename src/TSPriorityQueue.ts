@@ -10,9 +10,9 @@ class TSPriorityQueue<T>{
     private type:TSPriorityQueueVariance;
     private heap:Array<HeapItem<T>>;
 
-    constructor(){
+    constructor(type:TSPriorityQueueVariance = 'min'){
 
-        this.type = 'min';
+        this.type = type;
         this.heap = [];
     }
 
@@ -29,8 +29,13 @@ class TSPriorityQueue<T>{
         
         if(this.heap.length == 0)
             return null;
-        
-        return this.heap[0]!;
+
+        const peekedItem:HeapItem<T> = {priority: this.heap[0]!.priority, value:this.heap[0]!.value};
+
+        if(this.type == 'max')
+            peekedItem.priority = -peekedItem.priority;
+
+        return peekedItem;
     }
  
     public remove():HeapItem<T>|null{
@@ -42,6 +47,9 @@ class TSPriorityQueue<T>{
         this.heap[0] = this.heap[this.heap.length - 1];
         this.heap.pop();
         this.heapifyDown();
+
+        if(this.type == 'max')
+            item.priority = -item.priority;
 
         return item;
     }
